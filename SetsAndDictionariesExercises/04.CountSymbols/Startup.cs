@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _04.CountSymbols
 {
@@ -12,12 +9,21 @@ namespace _04.CountSymbols
         {
             var input = Console.ReadLine();
             var chars = new SortedDictionary<char, int>();
-            int count = 1;
 
-            for (int i = 0; i < input.Length; i++)
+            foreach (char c in input)
             {
-                chars.Add(input[i], count);
+                if (!chars.ContainsKey(c))
+                {
+                    chars.Add(c, 1);
+                    continue;
+                }
+                chars[c]++;
             }
+            foreach (var pair in chars)
+            {
+                Console.WriteLine($"{pair.Key}: {pair.Value} time/s");
+            }
+            
         }
     }
 }
